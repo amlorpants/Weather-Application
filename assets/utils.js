@@ -17,16 +17,6 @@ export function hide(element) {
   $(element).hide();
 }
 
-// Perform an AJAX GET request
-export function get(url, successCallback, errorCallback) {
-  $.ajax({
-    url: url,
-    method: 'GET',
-    success: successCallback,
-    error: errorCallback,
-  });
-}
-
 // Click event handler
 export function onClick(element, callback) {
   $(element).on('click', callback);
