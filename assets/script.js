@@ -39,7 +39,7 @@ async function getWeatherDataFromCityName(cityName) {
   await getWeather(cityInfo.lat, cityInfo.lon);
 }
 
-getWeatherDataFromCityName('Austin');
+// getWeatherDataFromCityName('Austin');
 
 function getWeatherFromCoordinates(lat, lon) {
   const url = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`;
@@ -74,5 +74,45 @@ async function getWeather(lat, lon) {
     console.log('Error inside of getWeather:', error.responseText);
   } // return weatherData
 }
+
+const mockDay = {
+  dt: 1686150000,
+  main: {
+    temp: 300.88,
+    feels_like: 301.82,
+    temp_min: 300.88,
+    temp_max: 300.88,
+    pressure: 1012,
+    sea_level: 1012,
+    grnd_level: 994,
+    humidity: 56,
+    temp_kf: 0,
+  },
+  weather: [
+    {
+      id: 802,
+      main: 'Clouds',
+      description: 'scattered clouds',
+      icon: '03d',
+    },
+  ],
+  clouds: {
+    all: 37,
+  },
+  wind: {
+    speed: 0.73,
+    deg: 67,
+    gust: 1.01,
+  },
+  visibility: 10000,
+  pop: 0,
+  sys: {
+    pod: 'd',
+  },
+  dt_txt: '2023-06-07 15:00:00',
+};
+
+// write a function that takes a day object and returns the useful values
+// determine what values are useful using mockDay above
 
 // function that takes weather json and displays weather cards ui
