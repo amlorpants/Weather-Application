@@ -6,7 +6,8 @@ let cityInfo = {
   lon: null,
   state: null,
 };
-let weeklyWeather = [];
+let weeklyWeather = []; // represents today and 5 days after
+let isLoading = false;
 
 // Perform an AJAX GET request for coordinates
 function getCoordinatesFromCityName(city) {
@@ -36,8 +37,10 @@ async function getCoordinates(cityName) {
 }
 
 async function getWeatherDataFromCityName(cityName) {
+  isLoading = true;
   await getCoordinates(cityName);
   await getWeather(cityInfo.lat, cityInfo.lon);
+  isLoading = false;
 }
 
 function getWeatherFromCoordinates(lat, lon) {
@@ -62,16 +65,15 @@ function getEverySixthItem(array) {
 // function that takes coordinates and returns weather json
 // use this api endpoint https://openweathermap.org/forecast5
 async function getWeather(lat, lon) {
-  // make api call
   try {
     const response = await getWeatherFromCoordinates(lat, lon);
-    // Process the response
+    const filteredDays = getEverySixthItem(response.list);
+    convertAllWeatherResponses(filteredDays); // Add this line to populate weeklyWeather
     console.log(response);
-    console.log('days', getEverySixthItem(response.list));
+    console.log('days', filteredDays);
   } catch (error) {
-    // Handle the error
     console.log('Error inside of getWeather:', error.responseText);
-  } // return weatherData
+  }
 }
 
 const mockDays = [
@@ -323,10 +325,67 @@ function convertAllWeatherResponses(daysArray) {
 
 convertAllWeatherResponses(mockDays);
 
-// combine api calls and data formatting into one function
-// call function getAllWeatherData
-// make loading flag
+function handleClick() {
+  // Get the city name from the input field
+  const cityName = document.querySelector('.form-control').value;
+  console.log(cityName);
+
+  // Clear the weeklyWeather array
+  weeklyWeather = [];
+
+  // Perform the API calls
+  getWeatherDataFromCityName(cityName)
+    .then(() => {
+      // Display or process the weather data as needed
+      updateWeatherCards(weeklyWeather);
+      console.log('weekly Weather', weeklyWeather);
+    })
+    .catch((error) => {
+      // Handle any errors that occurred during the API calls
+      console.log('Error:', error);
+    });
+}
+
+$(document).ready(function () {
+  $('#weatherButton').click(handleClick);
+});
+
+function updateWeatherCards() {
+  const cards = document.querySelectorAll(
+    '.weather0, .weather1, .weather2, .weather3, .weather4, .weather5'
+  );
+
+  for (let i = 0; i < weeklyWeather.length; i++) {
+    const card = cards[i];
+    const data = weeklyWeather[i];
+
+    card.querySelector('.card-city').textContent = cityInfo.name;
+    card.querySelector('.card-date').textContent = data.date;
+    card.querySelector(
+      '.card-temp'
+    ).textContent = `Temperature: ${data.temp}`;
+    card.querySelector(
+      '.card-wind'
+    ).textContent = `Wind: ${data.wind}`;
+    card.querySelector(
+      '.card-humidity'
+    ).textContent = `Humidity: ${data.humidity}`;
+    card.querySelector(
+      '.card-icon'
+    ).textContent = `Weather: ${data.icon}`;
+  }
+}
 
 // function that takes weather json and displays weather cards ui
+// this needs to go inside of an onClick function
+// getWeatherDataFromCityName('Austin'); Pass this the value of the form (formname.value)
 
-// getWeatherDataFromCityName('Austin');
+/*
+1. clean up old comments
+1.5. make it so if isLoading is true, you show a spinner or just hide the cards
+2. connect api calls function to button onClick
+3. pass the value from the input form to the button onClick
+4. the cards can have classes like weather card 0-6 so you can identify them
+5. use a for loop on the weeklyWeather array to put text on cards
+6. on that loop -> if () it's the first index or first item array, map it to the big card
+*/

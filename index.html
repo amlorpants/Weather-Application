@@ -2,83 +2,95 @@
 <html>
 
 <head>
-    <title>My jQuery App</title>
+    <title>Weekly Weather Dash</title>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="assets/script.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    <style src="./assets/style.css"></style>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css">
 </head>
 
 <body>
+    <nav class="navbar" style="background-color: #e3f2fd;">
+        <div class="container-fluid center">
+            <span class="navbar-brand mb-0 h1">Weekly Weather Dash</span>
+        </div>
+    </nav>
     <div class="row page-container">
-
         <!-- container column 3 -->
         <section id="search-section" class="col-2">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="Recipient's username"
-                    aria-label="Recipient's username" aria-describedby="button-addon2">
-                <button class="btn btn-outline-secondary" type="button" id="button-addon2">Button</button>
+                <input type="text" class="form-control" placeholder="Select a City" aria-label="Select a City"
+                    aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="weatherButton">Go</button>
             </div>
         </section>
         <!-- container column 9 -->
         <!-- row 1 of 2 -->
         <section class="col-10">
             <div class="row">
-                <div class="card w-75 mb-3">
+                <div class="card w-75 mb-3 weather0">
                     <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#" class="btn btn-primary">Button</a>
+                        <h5 class="card-city"></h5>
+                        <p class="card-date"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humidity"></p>
+                        <p class="card-icon"></p>
                     </div>
                 </div>
             </div>
             <!-- container column 9 same as above -->
             <!-- row 2 of 2 -->
             <div class="row">
-                <div class="card text-bg-primary mb-3 col" style="max-width: 18rem;">
+                <div class="card text-bg-primary mb-3 col weather1" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
+                        <h5 class="card-city"></h5>
+                        <p class="card-date"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humidity"></p>
+                        <p class="card-icon"></p>
                     </div>
                 </div>
-                <div class="card text-bg-primary mb-3 col" style="max-width: 18rem;">
+                <div class="card text-bg-primary mb-3 col weather2" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
+                        <h5 class="card-city"></h5>
+                        <p class="card-date"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humidity"></p>
+                        <p class="card-icon"></p>
                     </div>
                 </div>
-                <div class="card text-bg-primary mb-3 col" style="max-width: 18rem;">
+                <div class="card text-bg-primary mb-3 col weather3" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
+                        <h5 class="card-city"></h5>
+                        <p class="card-date"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humidity"></p>
+                        <p class="card-icon"></p>
                     </div>
                 </div>
-                <div class="card text-bg-primary mb-3 col" style="max-width: 18rem;">
+                <div class="card text-bg-primary mb-3 col weather4" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
+                        <h5 class="card-city"></h5>
+                        <p class="card-date"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humidity"></p>
+                        <p class="card-icon"></p>
                     </div>
                 </div>
-                <div class="card text-bg-primary mb-3 col" style="max-width: 18rem;">
+                <div class="card text-bg-primary mb-3 col weather5" style="max-width: 18rem;">
                     <div class="card-body">
-                        <h5 class="card-title">Primary card title</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of
-                            the
-                            card's
-                            content.</p>
+                        <h5 class="card-city"></h5>
+                        <p class="card-date"></p>
+                        <p class="card-temp"></p>
+                        <p class="card-wind"></p>
+                        <p class="card-humidity"></p>
+                        <p class="card-icon"></p>
                     </div>
                 </div>
             </div>
