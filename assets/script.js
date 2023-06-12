@@ -70,7 +70,7 @@ async function getCoordinates(cityName) {
     cityInfo.state = response[0].state;
   } catch (error) {
     // Handle the error
-    console.log('Error inside getCoords:', error.responseText);
+    console.error('Error inside getCoords:', error.responseText);
   }
   // return cityCoordinates
 }
@@ -108,231 +108,10 @@ async function getWeather(lat, lon) {
     const response = await getWeatherFromCoordinates(lat, lon);
     const filteredDays = getEverySixthItem(response.list);
     convertAllWeatherResponses(filteredDays); // Add this line to populate weeklyWeather
-    console.log(response);
-    console.log('days', filteredDays);
   } catch (error) {
-    console.log('Error inside of getWeather:', error.responseText);
+    console.error('Error inside of getWeather:', error.responseText);
   }
 }
-
-const mockDays = [
-  {
-    dt: 1686236400,
-    main: {
-      temp: 301.36,
-      feels_like: 302.46,
-      temp_min: 301.36,
-      temp_max: 301.36,
-      pressure: 1011,
-      sea_level: 1011,
-      grnd_level: 993,
-      humidity: 56,
-      temp_kf: 0,
-    },
-    weather: [
-      {
-        id: 803,
-        main: 'Clouds',
-        description: 'broken clouds',
-        icon: '04d',
-      },
-    ],
-    clouds: {
-      all: 84,
-    },
-    wind: {
-      speed: 1.97,
-      deg: 278,
-      gust: 2.69,
-    },
-    visibility: 10000,
-    pop: 0,
-    sys: {
-      pod: 'd',
-    },
-    dt_txt: '2023-06-08 15:00:00',
-  },
-  {
-    dt: 1686301200,
-    main: {
-      temp: 294.61,
-      feels_like: 295.06,
-      temp_min: 294.61,
-      temp_max: 294.61,
-      pressure: 1009,
-      sea_level: 1009,
-      grnd_level: 991,
-      humidity: 86,
-      temp_kf: 0,
-    },
-    weather: [
-      {
-        id: 800,
-        main: 'Clear',
-        description: 'clear sky',
-        icon: '01n',
-      },
-    ],
-    clouds: {
-      all: 3,
-    },
-    wind: {
-      speed: 2.84,
-      deg: 232,
-      gust: 7.44,
-    },
-    visibility: 10000,
-    pop: 0,
-    sys: {
-      pod: 'n',
-    },
-    dt_txt: '2023-06-09 09:00:00',
-  },
-  {
-    dt: 1686366000,
-    main: {
-      temp: 302,
-      feels_like: 304.23,
-      temp_min: 302,
-      temp_max: 302,
-      pressure: 1008,
-      sea_level: 1008,
-      grnd_level: 990,
-      humidity: 62,
-      temp_kf: 0,
-    },
-    weather: [
-      {
-        id: 803,
-        main: 'Clouds',
-        description: 'broken clouds',
-        icon: '04n',
-      },
-    ],
-    clouds: {
-      all: 71,
-    },
-    wind: {
-      speed: 3.55,
-      deg: 162,
-      gust: 9.43,
-    },
-    visibility: 10000,
-    pop: 0,
-    sys: {
-      pod: 'n',
-    },
-    dt_txt: '2023-06-10 03:00:00',
-  },
-  {
-    dt: 1686430800,
-    main: {
-      temp: 309.18,
-      feels_like: 310.15,
-      temp_min: 309.18,
-      temp_max: 309.18,
-      pressure: 1006,
-      sea_level: 1006,
-      grnd_level: 989,
-      humidity: 33,
-      temp_kf: 0,
-    },
-    weather: [
-      {
-        id: 800,
-        main: 'Clear',
-        description: 'clear sky',
-        icon: '01d',
-      },
-    ],
-    clouds: {
-      all: 0,
-    },
-    wind: {
-      speed: 5.55,
-      deg: 197,
-      gust: 6.69,
-    },
-    visibility: 10000,
-    pop: 0,
-    sys: {
-      pod: 'd',
-    },
-    dt_txt: '2023-06-10 21:00:00',
-  },
-  {
-    dt: 1686495600,
-    main: {
-      temp: 301.99,
-      feels_like: 303.77,
-      temp_min: 301.99,
-      temp_max: 301.99,
-      pressure: 1009,
-      sea_level: 1009,
-      grnd_level: 992,
-      humidity: 59,
-      temp_kf: 0,
-    },
-    weather: [
-      {
-        id: 802,
-        main: 'Clouds',
-        description: 'scattered clouds',
-        icon: '03d',
-      },
-    ],
-    clouds: {
-      all: 29,
-    },
-    wind: {
-      speed: 6.12,
-      deg: 205,
-      gust: 9.2,
-    },
-    visibility: 10000,
-    pop: 0,
-    sys: {
-      pod: 'd',
-    },
-    dt_txt: '2023-06-11 15:00:00',
-  },
-  {
-    dt: 1686560400,
-    main: {
-      temp: 297.24,
-      feels_like: 298.03,
-      temp_min: 297.24,
-      temp_max: 297.24,
-      pressure: 1009,
-      sea_level: 1009,
-      grnd_level: 991,
-      humidity: 89,
-      temp_kf: 0,
-    },
-    weather: [
-      {
-        id: 800,
-        main: 'Clear',
-        description: 'clear sky',
-        icon: '01n',
-      },
-    ],
-    clouds: {
-      all: 0,
-    },
-    wind: {
-      speed: 4.37,
-      deg: 195,
-      gust: 12.15,
-    },
-    visibility: 10000,
-    pop: 0,
-    sys: {
-      pod: 'n',
-    },
-    dt_txt: '2023-06-12 09:00:00',
-  },
-];
 
 // write a function that takes a day object and returns the useful values
 // determine what values are useful using mockDay above
@@ -365,7 +144,6 @@ function convertAllWeatherResponses(daysArray) {
 function handleClick() {
   // Get the city name from the input field
   const cityName = document.querySelector('.form-control').value;
-  console.log(cityName);
 
   // Clear the weeklyWeather array
   weeklyWeather = [];
@@ -375,11 +153,10 @@ function handleClick() {
     .then(() => {
       // Display or process the weather data as needed
       updateWeatherCards(weeklyWeather);
-      console.log('weekly Weather', weeklyWeather);
     })
     .catch((error) => {
       // Handle any errors that occurred during the API calls
-      console.log('Error:', error);
+      console.error('Error:', error);
     });
 }
 
@@ -413,17 +190,3 @@ function updateWeatherCards() {
       .addClass('.card-icon ' + matchedIcon);
   }
 }
-
-// function that takes weather json and displays weather cards ui
-// this needs to go inside of an onClick function
-// getWeatherDataFromCityName('Austin'); Pass this the value of the form (formname.value)
-
-/*
-1. clean up old comments
-1.5. make it so if isLoading is true, you show a spinner or just hide the cards
-2. connect api calls function to button onClick
-3. pass the value from the input form to the button onClick
-4. the cards can have classes like weather card 0-6 so you can identify them
-5. use a for loop on the weeklyWeather array to put text on cards
-6. on that loop -> if () it's the first index or first item array, map it to the big card
-*/
