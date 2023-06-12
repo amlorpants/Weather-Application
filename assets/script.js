@@ -9,6 +9,45 @@ let cityInfo = {
 let weeklyWeather = []; // represents today and 5 days after
 let isLoading = false;
 
+function getWeatherIcon(iconCode) {
+  const icons = [
+    { iconName: 'fas fa-sun', codes: [800] },
+    { iconName: 'fas fa-cloud-sun', codes: [801, 802] },
+    { iconName: 'fas fa-cloud', codes: [803, 804] },
+    {
+      iconName: 'fas fa-cloud-showers-heavy',
+      codes: [300, 301, 302, 310, 311, 312, 313, 314, 321],
+    },
+    {
+      iconName: 'fas fa-cloud-rain',
+      codes: [500, 501, 502, 503, 504, 511, 520, 521, 522, 531],
+    },
+    {
+      iconName: 'fas fa-bolt',
+      codes: [200, 201, 202, 210, 211, 212, 221, 230, 231, 232],
+    },
+    {
+      iconName: 'fas fa-snowflake',
+      codes: [600, 601, 602, 611, 612, 613, 615, 616, 620, 621],
+    },
+    { iconName: 'fas fa-smog', codes: [701] },
+    { iconName: 'fas fa-smoke', codes: [711] },
+    { iconName: 'fas fa-smog', codes: [721] },
+    { iconName: 'fas fa-fog', codes: [741] },
+    { iconName: 'fas fa-dust', codes: [731, 761] },
+    { iconName: 'fas fa-wind', codes: [751] },
+    { iconName: 'fas fa-cloud-showers-heavy', codes: [762] },
+    { iconName: 'fas fa-wind', codes: [771] },
+    { iconName: 'fas fa-tornado', codes: [781] },
+  ];
+
+  const matchedIcon = icons.find((icon) =>
+    icon.codes.includes(iconCode)
+  );
+
+  return matchedIcon ? matchedIcon.iconName : 'unknown';
+}
+
 // Perform an AJAX GET request for coordinates
 function getCoordinatesFromCityName(city) {
   const url = `http://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${apiKey}`;
@@ -311,7 +350,7 @@ function convertWeatherResponse(dayObject) {
   formattedData.temp = dayObject.main.temp;
   formattedData.wind = dayObject.wind.speed;
   formattedData.humidity = dayObject.main.humidity;
-  formattedData.icon = dayObject.weather[0].main;
+  formattedData.icon = dayObject.weather[0].id;
 
   return formattedData;
 }
@@ -322,8 +361,6 @@ function convertAllWeatherResponses(daysArray) {
     weeklyWeather.push(convertWeatherResponse(day));
   });
 }
-
-convertAllWeatherResponses(mockDays);
 
 function handleClick() {
   // Get the city name from the input field
@@ -358,6 +395,7 @@ function updateWeatherCards() {
   for (let i = 0; i < weeklyWeather.length; i++) {
     const card = cards[i];
     const data = weeklyWeather[i];
+    const matchedIcon = getWeatherIcon(data.icon);
 
     card.querySelector('.card-city').textContent = cityInfo.name;
     card.querySelector('.card-date').textContent = data.date;
@@ -370,9 +408,9 @@ function updateWeatherCards() {
     card.querySelector(
       '.card-humidity'
     ).textContent = `Humidity: ${data.humidity}`;
-    card.querySelector(
-      '.card-icon'
-    ).textContent = `Weather: ${data.icon}`;
+    $('.card-icon')
+      .removeClass()
+      .addClass('.card-icon ' + matchedIcon);
   }
 }
 
