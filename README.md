@@ -15,3 +15,4 @@ This challenge required me to create a weather app. I had to use two API's one f
 Amy Taylor
 
 ## Visual
+![Screenshot 2023-06-12 at 16-56-45 Weekly Weather Dash](https://github.com/amlorpants/Weather-Application/assets/87711695/6f4ed70f-ea72-4906-b585-06b6bbd2453d)
