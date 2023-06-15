@@ -45,7 +45,11 @@ function getWeatherIcon(iconCode) {
     icon.codes.includes(iconCode)
   );
 
-  return matchedIcon ? matchedIcon.iconName : 'unknown';
+  if (matchedIcon) {
+    return matchedIcon.iconName;
+  } else {
+    return 'unknown';
+  }
 }
 
 // Perform an AJAX GET request for coordinates
